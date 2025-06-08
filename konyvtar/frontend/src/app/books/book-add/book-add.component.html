@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Cím</mat-label>
+    <input matInput formControlName="title" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Szerző</mat-label>
+    <input matInput formControlName="author" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Kiadás éve</mat-label>
+    <input matInput formControlName="year" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Könyv hozzáadása</button>
+
+  <p *ngIf="successMessage">{{ successMessage }}</p>
+</form>
