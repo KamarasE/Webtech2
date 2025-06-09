@@ -8,7 +8,7 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),        // Fontos!
+    provideHttpClient(),       
     provideAnimations()         // Angular Material animációkhoz
   ]
 });

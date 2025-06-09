@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterModule  // 💡 EZ HIÁNYZOTT → routerLink direktívákhoz szükséges
+  ],
   template: `
     <h1>Könyvtár</h1>
-    <nav>
+    <nav *ngIf="!isLogin">
       <a routerLink="/books/list">Könyvlista</a> |
       <a routerLink="/books/add">Könyv hozzáadása</a>
     </nav>
@@ -19,4 +25,14 @@ import { RouterOutlet } from '@angular/router';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  isLogin = false;
+
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isLogin = event.url === '/';
+    });
+  }
+}

@@ -31,12 +31,18 @@ export class BookAddComponent {
     });
   }
 
-  onSubmit(): void {
-    if (this.form.valid) {
-      this.bookService.addBook(this.form.value).subscribe(() => {
-        this.successMessage = 'Könyv sikeresen hozzáadva!';
-        this.form.reset();
-      });
-    }
+ onSubmit(): void {
+  if (this.form.valid) {
+    const formValue = this.form.value;
+    const bookToSend = {
+      ...formValue,
+      year: Number(formValue.year) // ← Ez konvertálja számmá
+    };
+
+    this.bookService.addBook(bookToSend).subscribe(() => {
+      this.successMessage = 'Könyv sikeresen hozzáadva!';
+      this.form.reset();
+    });
   }
+}
 }
