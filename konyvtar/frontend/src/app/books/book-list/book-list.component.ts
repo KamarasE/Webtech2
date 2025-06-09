@@ -21,4 +21,13 @@ export class BookListComponent implements OnInit {
       this.books = data;
     });
   }
+  deleteBook(book: Book): void {
+  if (confirm(`Biztosan törlöd: ${book.title}?`)) {
+    this.bookService.deleteBookByTitle(book.title, book.author).subscribe(() => {
+      this.books = this.books.filter(b => b.title !== book.title || b.author !== book.author);
+    });
+  }
+}
+
+
 }

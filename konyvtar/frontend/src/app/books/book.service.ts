@@ -18,4 +18,13 @@ export class BookService {
   addBook(book: Book): Observable<any> {
     return this.http.post(this.apiUrl, book);
   }
+
+  deleteBookByTitle(title: string, author: string): Observable<any> {
+  return this.http.request('delete', this.apiUrl, {
+    body: { title, author }
+  });
+}
+
+
+
 }

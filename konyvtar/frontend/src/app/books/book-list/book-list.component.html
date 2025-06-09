@@ -1,5 +1,8 @@
 <mat-list>
   <mat-list-item *ngFor="let book of books">
-    {{ book.title }} – {{ book.author }} ({{ book.year }})
+    <div style="flex: 1;">
+      <strong>{{ book.title }}</strong> – {{ book.author }} ({{ book.year }})
+    </div>
+    <button mat-button color="warn" (click)="deleteBook(book)">Törlés</button>
   </mat-list-item>
 </mat-list>

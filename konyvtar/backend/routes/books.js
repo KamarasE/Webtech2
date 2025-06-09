@@ -36,7 +36,24 @@ module.exports = function (db) {
     }
   });
 
-  
+ router.delete('/', async (req, res) => {
+  const { title, author } = req.body;
+
+  if (!title || !author) {
+    return res.status(400).json({ error: 'Hiányzó adatok (title, author)' });
+  }
+
+  try {
+    const result = await booksCollection.deleteOne({ title, author });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'A megadott könyv nem található' });
+    }
+
+    res.json({ message: 'Könyv törölve' });
+  } catch (err) {
+    res.status(500).json({ error: 'Hiba a könyv törlésekor' });
+  }
+});
 
   return router;
 };
