@@ -9,10 +9,10 @@ import { filter } from 'rxjs/operators';
   imports: [
     CommonModule,
     RouterOutlet,
-    RouterModule  // 💡 EZ HIÁNYZOTT → routerLink direktívákhoz szükséges
+    RouterModule
   ],
   template: `
-    <h1>Könyvtár</h1>
+    <h1 style="font-family: cursive;">Könyvtár</h1>
     <nav *ngIf="!isLogin">
       <a routerLink="/books/list">Könyvlista</a> |
       <a routerLink="/books/add">Könyv hozzáadása</a>

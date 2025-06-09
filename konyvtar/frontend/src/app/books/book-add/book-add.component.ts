@@ -36,7 +36,7 @@ export class BookAddComponent {
     const formValue = this.form.value;
     const bookToSend = {
       ...formValue,
-      year: Number(formValue.year) // ← Ez konvertálja számmá
+      year: Number(formValue.year)
     };
 
     this.bookService.addBook(bookToSend).subscribe(() => {

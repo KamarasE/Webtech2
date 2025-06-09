@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   template: `
-    <h2>Bejelentkezés</h2>
+    <h2 style="text-align: center;">Bejelentkezés</h2>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Felhasználónév</mat-label>

@@ -12,23 +12,21 @@ const uri = process.env.MONGODB_URI;
 
 const bookRoutes = require('./routes/books');
 
-// Adatbázis kapcsolat változó
 let db;
 
 // MongoDB csatlakozás
 MongoClient.connect(uri, { useUnifiedTopology: true })
   .then(client => {
-    db = client.db(); // alapértelmezett adatbázis (pl. konyvtar)
+    db = client.db();
     console.log('✅ Kapcsolódva a MongoDB-hez');
 
-    app.use('/api/books', bookRoutes(db)); // ← itt adjuk át a db-t a routernek
+    app.use('/api/books', bookRoutes(db));
 
     // Ide jöhetnek a route-ok  
     app.get('/', (req, res) => {
       res.send('📚 Könyvtár API működik');
     });
 
-    // Példa route lekérdezésre
     app.get('/api/test', async (req, res) => {
       try {
         const result = await db.collection('test').find().toArray();

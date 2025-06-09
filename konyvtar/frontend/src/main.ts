@@ -9,6 +9,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),       
-    provideAnimations()         // Angular Material animációkhoz
+    provideAnimations()
   ]
 });
